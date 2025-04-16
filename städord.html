@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Städord med tal</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    .word { margin: 0.5rem; display: inline-block; padding: 0.5rem 1rem; border: 1px solid #ccc; border-radius: 5px; cursor: pointer; background-color: #f0f0f0; }
+    .word:hover { background-color: #d0eaff; }
+  </style>
+</head>
+<body>
+  <h1>Städord med tal</h1>
+  <div id="wordList"></div>
+
+  <script>
+    const words = [
+      "städar", "plockar", "dammsuger", "torkar", "skurar", "moppar",
+      "dammtorkar", "sopar", "en sopborste", "en sopskyffel",
+      "en mopp", "en hink", "en trasa", "en svamp", "rengöringsmedel",
+      "sopor", "skräp", "en soppåse", "en papperskorg", "återvinning",
+      "smutsig", "dammig", "ett golv", "ett tak", "en vägg", "fönsterputs",
+      "ett personalrum", "en matsal", "en tvättstuga", "en trappa",
+      "en hiss", "en korridor", "en boende", "ett boende",
+      "Jag ska städa här.", "Behöver du hjälp?", "Var slänger jag soporna?",
+      "Jag byter soppåsen.", "Jag torkar av bordet.", "Finns det något mer jag kan göra?"
+    ];
+
+    const container = document.getElementById("wordList");
+
+    words.forEach(word => {
+      const el = document.createElement("span");
+      el.className = "word";
+      el.textContent = word;
+      el.onclick = () => {
+        const utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = "sv-SE";
+        speechSynthesis.speak(utterance);
+      };
+      container.appendChild(el);
+    });
+  </script>
+</body>
+</html>
